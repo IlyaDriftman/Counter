@@ -8,24 +8,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var text: UILabel!
-    
-    @IBOutlet weak var buttonPlus: UIButton!
-    @IBOutlet weak var buttonMinus: UIButton!
-    
-    @IBOutlet weak var textHistrory: UITextView!
-    
-    
+    @IBOutlet private weak var text: UILabel!
+    @IBOutlet private weak var buttonPlus: UIButton!
+    @IBOutlet private weak var buttonMinus: UIButton!
+    @IBOutlet private weak var textHistrory: UITextView!
     private var count:Int = 0
     private var maintext: String = "Счетчик равен "
     
-    func getDateTime() -> String {
-        let getDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy, HH:mm:ss"
-        return String(dateFormatter.string(from: getDate))
-        
-    }
     
     override func viewDidLoad() {
     
@@ -33,21 +22,25 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         text.text = maintext + String(0)
         textHistrory.text = "История изменений:\n"
-        
-        
-        //labelButton.setTitle("Нажмите", for: UIControl.State.application)
         buttonPlus.setTitle("+", for: .normal)
         buttonMinus.setTitle("-", for: .normal)
-        //labelButton.setTitle("Button Title", for: UIControl.State.Type .normal)
     }
-
-    @IBAction func changeTextPlus(_ sender: Any) {
+    
+    private func getDateTime() -> String {
+        let getDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy, HH:mm:ss"
+        return String(dateFormatter.string(from: getDate))
+        
+    }
+    
+    @IBAction private func changeTextPlus(_ sender: Any) {
         count += 1
         text.text = maintext + String(count)
         textHistrory.text += getDateTime() + ": значение изменено на +1\n"
     }
     
-    @IBAction func changeTextMinus(_ sender: Any) {
+    @IBAction private func changeTextMinus(_ sender: Any) {
         count -= 1
         if count<0 {
             count=0
@@ -58,7 +51,7 @@ class ViewController: UIViewController {
         text.text = maintext + String(count)
         
     }
-    @IBAction func buttonRefresh(_ sender: Any) {
+    @IBAction private func buttonRefresh(_ sender: Any) {
         count = 0
         text.text = maintext + String(count)
         textHistrory.text += getDateTime() + ": значение сброшено\n"
