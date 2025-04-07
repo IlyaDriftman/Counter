@@ -37,16 +37,16 @@ class ViewController: UIViewController {
     @IBAction private func changeTextPlus(_ sender: Any) {
         count += 1
         text.text = maintext + String(count)
-        textHistrory.text += getDateTime() + ": значение изменено на +1\n"
+        textHistrory.text += "[" + getDateTime() + "]: значение изменено на +1\n"
     }
     
     @IBAction private func changeTextMinus(_ sender: Any) {
         count -= 1
         if count<0 {
             count=0
-            textHistrory.text += getDateTime() + ": попытка уменьшить значение счётчика ниже 0\n"
+            textHistrory.text += "[" + getDateTime() + "]: попытка уменьшить значение счётчика ниже 0\n"
         } else {
-            textHistrory.text += getDateTime() + ": значение изменено на -1\n"
+            textHistrory.text += "[" + getDateTime() + "]: значение изменено на -1\n"
         }
         text.text = maintext + String(count)
         
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     @IBAction private func buttonRefresh(_ sender: Any) {
         count = 0
         text.text = maintext + String(count)
-        textHistrory.text += getDateTime() + ": значение сброшено\n"
+        textHistrory.text += "[" + getDateTime() + "]: значение сброшено\n"
     }
 }
 
